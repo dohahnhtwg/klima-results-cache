@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>klima-results-cache test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../klima-results-cache.html">
+  </head>
+  <body>
+    <test-fixture id="basic">
+      <template>
+        <klima-results-cache></klima-results-cache>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('klima-results-cache', function() {
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'klima-results-cache');
+        });
+      });
+    </script>
+  </body>
+</html>

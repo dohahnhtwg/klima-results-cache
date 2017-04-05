@@ -1,0 +1,79 @@
+<link rel="import" href="/bower_components/polymer/polymer.html"></script>
+
+<!--
+`klima-results-cache`
+Fetches result from Klima server and prepares data for views
+
+@demo demo/index.html
+-->
+<script>
+var KlimaResultsBehavior = (function () {
+  var results;
+
+  var klimaResults = {
+    properties: {
+      results: {
+        type: Object,
+        value: function() {
+          return getResults();
+        }
+      }
+    },
+
+    ready: function() {
+      console.log("klimaResults " + this.results.i + " is ready");
+      this.results.i++;
+    },
+
+    getChartData: function(domainName, departmentName, valueOfInterest, callback) {
+      var department = this[domainName][departmentName];
+      if(!department) {
+        this.$.ajax.url = "something";
+        this.$.ajax.response = function(e) {
+          allocationData[department] = e.result.data;
+          var chartData = this.buildChartData(department, valueOfInterest);
+          callback(chartData);
+        }
+        this.$.ajax.generateRequest();
+      } else {
+        var chartData = this.buildChartData(department, valueOfInterest);
+        callback(chartData);
+      }
+    },
+
+    buildChartData: function(department, valueOfInterest, columns) {
+      var rows = new Array();
+      department.foreach(function(periodResults) {
+        var valueOfInterestResult = periodResults.foreach(function(value) {
+            return value.id == valueOfInterest;
+        });
+        var row = new Array();
+        columns.foreach(function(column) {
+          row.push(valueOfInterestResult[column]);
+        });
+        rows.push(row);
+      });
+      return rows;
+    }
+  };
+
+  getResults = function() {
+    if(results == null) {
+      results = {
+        allocationData: {},
+        contributionMargin: {},
+        fullCosts: {},
+        periodResults: {},
+        personal: {},
+        arrivalRates: {},
+        qualities: {},
+        i: 1
+      };
+      return results;
+    }
+    return results;
+  }
+
+  return klimaResults;
+})();
+</script>
