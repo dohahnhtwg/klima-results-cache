@@ -13,8 +13,11 @@
       properties: {
 
       },
-      ready: function() {
 
+      ready: function() {
+        this.getTableData(0, "allocationData", "total", function(tableData) {
+          console.log(tableData);
+        })
       }
     })
   </script>

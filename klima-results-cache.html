@@ -1,4 +1,5 @@
 <link rel="import" href="/bower_components/polymer/polymer.html"></script>
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html"></script>
 
 <!--
 `klima-results-cache`
@@ -18,12 +19,26 @@ var KlimaResultsBehavior = (function () {
         value: function() {
           return getResults();
         }
+      },
+      ajax: {
+        type: Object,
+        value: function() {
+          var ajaxEle = document.getElementById("resultsAjax");
+          if(ajaxEle == null) {
+            ajaxEle = document.createElement('iron-ajax');
+            ajaxEle.setAttribute("id", "resultsAjax");
+            ajaxEle.setAttribute("auto", "true");
+            ajaxEle.setAttribute("handle-as", "json");
+            ajaxEle.setAttribute("url", "/test.json");
+            document.body.appendChild(ajaxEle);
+          }
+          return ajaxEle;
+        }
       }
     },
 
     ready: function() {
-      console.log("klimaResults " + this.results.i + " is ready");
-      this.results.i++;
+
     },
 
     getChartData: function(domainName, departmentName, valueOfInterest, callback) {
@@ -32,17 +47,17 @@ var KlimaResultsBehavior = (function () {
         this.$.ajax.url = "something";
         this.$.ajax.response = function(e) {
           allocationData[department] = e.result.data;
-          var chartData = this.buildChartData(department, valueOfInterest);
+          var chartData = this._buildChartData(department, valueOfInterest);
           callback(chartData);
         }
         this.$.ajax.generateRequest();
       } else {
-        var chartData = this.buildChartData(department, valueOfInterest);
+        var chartData = this._buildChartData(department, valueOfInterest);
         callback(chartData);
       }
     },
 
-    buildChartData: function(department, valueOfInterest, columns) {
+    _buildChartData: function(department, valueOfInterest, columns) {
       var rows = new Array();
       department.foreach(function(periodResults) {
         var valueOfInterestResult = periodResults.foreach(function(value) {
@@ -55,6 +70,28 @@ var KlimaResultsBehavior = (function () {
         rows.push(row);
       });
       return rows;
+    },
+
+    getTableData: function(period, domainKey, departmentKey, callback) {
+      var domain = this.results[domainKey];
+      if(!domain) {
+        this.ajax.setAttribute("url", "/" + domainKey + ".json");
+        this.ajax.addEventListener("response", function(e) {
+          this.results[domainKey] = e.detail.response;
+          var tableData = this._buildTableData(period, departmentKey, e.detail.response);
+          callback(tableData);
+        });
+      } else {
+
+      }
+    },
+
+    _buildTableData: function(period, departmentKey, domain) {
+      console.log("moment");
+      return domain.departmentResults.find(function(department) {
+        console.log(department);
+        return department.key ===  departmentKey;
+      });
     }
   };
 
@@ -67,8 +104,7 @@ var KlimaResultsBehavior = (function () {
         periodResults: {},
         personal: {},
         arrivalRates: {},
-        qualities: {},
-        i: 1
+        qualities: {}
       };
       return results;
     }
