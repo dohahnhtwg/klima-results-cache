@@ -39,34 +39,55 @@ var KlimaResultsBehavior = (function () {
 
     },
 
-    getChartData: function(domainName, departmentName, valueOfInterest, callback) {
-      var department = this[domainName][departmentName];
-      if(!department) {
-        this.$.ajax.url = "allocationData";
-        this.$.ajax.response = function(e) {
-          allocationData[department] = e.detail.response;
-          var chartData = this._buildChartData(department, valueOfInterest);
+    getChartData: function(valueOfInterest, domainKey, departmentKey, callback) {
+      var domain = this.results[domainKey];
+      if(!domain) {
+        this.ajax.setAttribute("url", "/" + domainKey + ".json");
+        this.ajax.generateRequest();
+        this.ajax.addEventListener("response", function(e) {
+          this.results[domainKey] = e.detail.response;
+          var chartData = this._buildChartData(valueOfInterest,
+            e.detail.response, departmentKey);
           callback(chartData);
-        }
-        this.$.ajax.generateRequest();
+        }.bind(this));
       } else {
-        var chartData = this._buildChartData(department, valueOfInterest);
+        var chartData = this._buildChartData(valueOfInterest,
+          this.results[domainKey], departmentKey);
         callback(chartData);
       }
     },
 
-    _buildChartData: function(department, valueOfInterest, columns) {
-      var rows = new Array();
-      department.foreach(function(periodResults) {
-        var valueOfInterestResult = periodResults.foreach(function(value) {
-            return value.id == valueOfInterest;
+    _buildChartData: function(valueOfInterest, domain, departmentKey) {
+      var department = this._getDepartment(domain, departmentKey);
+      var cols = this._buildChartCols(department, valueOfInterest);
+      var rows = this._buildChartRows(department, valueOfInterest);
+      var chartData = {cols: cols, rows: rows};
+      return chartData;
+    },
+
+    _buildChartCols: function(department, valueOfInterest) {
+      var cols = [];
+      cols.push({label: "period", type: "Number"})
+      department.periodResults[0].columns.forEach(function(entry) {
+        cols.push({label: entry.caption, type: "Number"})
+      })
+      return cols;
+    },
+
+    _buildChartRows: function(department, valueOfInterest) {
+      var rows = [];
+      var i = 0;
+      department.periodResults.forEach(function(periodResult) {
+        var values = periodResult.rows.find(function(row) {
+          return row.key === valueOfInterest;
+        }).values;
+        var rowOfInterest = [i];
+        values.forEach(function(value) {
+          rowOfInterest.push(value);
         });
-        var row = new Array();
-        columns.foreach(function(column) {
-          row.push(valueOfInterestResult[column]);
-        });
-        rows.push(row);
-      });
+        rows.push(rowOfInterest);
+        i++;
+      })
       return rows;
     },
 
@@ -77,22 +98,24 @@ var KlimaResultsBehavior = (function () {
         this.ajax.generateRequest();
         this.ajax.addEventListener("response", function(e) {
           this.results[domainKey] = e.detail.response;
-          var tableData = this._buildTableData(period, e.detail.response, departmentKey);
+          var tableData = this._buildTableData(period,
+            e.detail.response, departmentKey);
           callback(tableData);
         }.bind(this));
       } else {
-        var tableData = this._buildTableData(period, this.results[domainKey], departmentKey);
+        var tableData = this._buildTableData(period,
+          this.results[domainKey], departmentKey);
         callback(tableData);
       }
     },
 
     _buildTableData: function(period, domain, departmentKey) {
       var department = this._getDepartment(domain, departmentKey);
-      var periodResults = department.periodResults[period];
+      var periodResult = department.periodResults[period];
       var tableData = {};
-      tableData.items = this._buildTableItems(periodResults);
-      tableData.columns = this._buildTableColumns(periodResults);
-      tableData.header = this._buildHeader(periodResults);
+      tableData.items = this._buildTableItems(periodResult);
+      tableData.columns = this._buildTableColumns(periodResult);
+      tableData.header = this._buildHeader(periodResult);
       return tableData
     },
 
@@ -102,30 +125,32 @@ var KlimaResultsBehavior = (function () {
       });
     },
 
-    _buildTableItems: function(periodResults) {
+    _buildTableItems: function(periodResult) {
       var items = [];
-      periodResults.rows.forEach(function(entry) {
+      periodResult.rows.forEach(function(entry) {
         var preparedEntry = {description: entry.caption};
-          for(var i=0;i<entry.values.length;i++) {
-            preparedEntry[periodResults.columns[i].key] = entry.values[i]
-          }
-          items.push(preparedEntry);
+        for(var i=0;i<entry.values.length;i++) {
+          preparedEntry[periodResult.columns[i].key] = entry.values[i]
+        }
+        items.push(preparedEntry);
       });
       return items;
     },
 
-    _buildTableColumns: function(periodResults) {
+    _buildTableColumns: function(periodResult) {
       var columns = [];
-      periodResults.columns.forEach(function(entry) {
+      columns.push({name: "description"});
+      periodResult.columns.forEach(function(entry) {
         var preparedEntry = {name: entry.key};
         columns.push(preparedEntry);
       });
       return columns;
     },
 
-    _buildHeader: function(periodResults) {
+    _buildHeader: function(periodResult) {
       var header = [];
-      periodResults.columns.forEach(function(entry) {
+      header.push("");
+      periodResult.columns.forEach(function(entry) {
         header.push(entry.caption);
       });
       return header;

@@ -1,0 +1,70 @@
+<link rel="import" href="../klima-results-cache.html">
+<link rel="import" href="../bower_components/polymer/polymer.html"></script>
+<link rel="import" href="../bower_components/paper-button/paper-button.html"></script>
+<dom-module id="chart-element">
+  <style is="custom-style">
+    paper-button {
+      margin: 10px;
+    }
+    div {
+      margin: 10px;
+    }
+  </style>
+  <template>
+    <div>
+      <paper-button raised on-tap="_showInternalMedicineAccepted">Internal Medicine - Accepted patients</paper-button>
+      <paper-button raised on-tap="_showInternalMedicineRejected">Internal Medicine - Rejected Patients</paper-button>
+      <paper-button raised on-tap="_showSurgicalWardAccepted">Surgical Ward - Accepted patients</paper-button>
+      <paper-button raised on-tap="_showSurgicalWardRejected">Surgical Ward - Rejected Patients</paper-button>
+      <h3>Columns:</h3>
+      <div>
+        [[columns]]
+      </div>
+      <h3>Rows:</h3>
+      <div>
+        [[rows]]
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'chart-element',
+      behaviors: [KlimaResultsBehavior],
+      properties: {
+        columns: {
+          type: String,
+          value: "No Data"
+        },
+        rows: {
+          type: String,
+          value: "No Data"
+        }
+      },
+
+      _showInternalMedicineAccepted: function() {
+        this.getChartData("hospital.results.acceptedPatients", "allocationData", "internalMedicine", function(chartData) {
+          this._changeContent(chartData);
+        }.bind(this))
+      },
+      _showInternalMedicineRejected: function() {
+        this.getChartData("hospital.results.rejectedPatients", "allocationData", "internalMedicine", function(chartData) {
+          this._changeContent(chartData);
+        }.bind(this))
+      },
+      _showSurgicalWardAccepted: function() {
+        this.getChartData("hospital.results.acceptedPatients", "allocationData", "surgicalWard", function(chartData) {
+          this._changeContent(chartData);
+        }.bind(this))
+      },
+      _showSurgicalWardRejected: function() {
+        this.getChartData("hospital.results.rejectedPatients", "allocationData", "surgicalWard", function(chartData) {
+          this._changeContent(chartData);
+        }.bind(this))
+      },
+      _changeContent: function(chartData)  {
+        this.columns = JSON.stringify(chartData.cols);
+        this.rows = JSON.stringify(chartData.rows);
+      }
+    })
+  </script>
+</dom-module>
