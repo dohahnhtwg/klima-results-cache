@@ -6,23 +6,23 @@
 
     <title>klima-results-cache demo</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../klima-results-cache.html">
-
+    <link rel="import" href="example-element.html">
     <style is="custom-style" include="demo-pages-shared-styles">
+      body {
+        font-family: sans-serif;
+        padding: 24px;
+        margin: 0;
+      }
     </style>
   </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic klima-results-cache demo</h3>
-      <demo-snippet>
-        <template>
-          <klima-results-cache></klima-results-cache>
-        </template>
-      </demo-snippet>
-    </div>
+  <body unresolved>
+    <h3>Table Data</h3>
+    <example-element></example-element>
+    <h3>Chart Data</h3>
   </body>
 </html>

@@ -1,0 +1,80 @@
+<link rel="import" href="../klima-results-cache.html">
+<link rel="import" href="../bower_components/polymer/polymer.html"></script>
+<link rel="import" href="../bower_components/paper-button/paper-button.html"></script>
+<dom-module id="example-element">
+  <style is="custom-style">
+    paper-button {
+      margin: 10px;
+    }
+    div {
+      margin: 10px;
+    }
+  </style>
+  <template>
+    <div>
+      <paper-button raised on-tap="_showTotalHospital">Total Hospital</paper-button>
+      <paper-button raised on-tap="_showInternalMedicine">Internal Medicine</paper-button>
+      <paper-button raised on-tap="_showSurgicalWard">Surgical Ward</paper-button>
+      <paper-button raised on-tap="_showGynecology">Gynecology</paper-button>
+      <h3>Items:</h3>
+      <div id="itemsDiv">
+        No Data
+      </div>
+      <h3>Columns:</h3>
+      <div id="columnsDiv">
+        No Data
+      </div>
+      <h3>Header:</h3>
+      <div id="headerDiv">
+        No Data
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'example-element',
+      behaviors: [KlimaResultsBehavior],
+
+      _showTotalHospital: function() {
+        var itemsDiv = this.$.itemsDiv;
+        var columnsDiv = this.$.columnsDiv;
+        var headerDiv = this.$.headerDiv;
+        this.getTableData(0, "allocationData", "total", function(tableData) {
+          itemsDiv.innerHTML = JSON.stringify(tableData.items);
+          columnsDiv.innerHTML = JSON.stringify(tableData.columns);
+          headerDiv.innerHTML = JSON.stringify(tableData.header);
+        })
+      },
+      _showInternalMedicine: function() {
+        var itemsDiv = this.$.itemsDiv;
+        var columnsDiv = this.$.columnsDiv;
+        var headerDiv = this.$.headerDiv;
+        this.getTableData(0, "allocationData", "internal", function(tableData) {
+          itemsDiv.innerHTML = JSON.stringify(tableData.items);
+          columnsDiv.innerHTML = JSON.stringify(tableData.columns);
+          headerDiv.innerHTML = JSON.stringify(tableData.header);
+        })
+      },
+      _showSurgicalWard: function() {
+        var itemsDiv = this.$.itemsDiv;
+        var columnsDiv = this.$.columnsDiv;
+        var headerDiv = this.$.headerDiv;
+        this.getTableData(0, "allocationData", "surgery", function(tableData) {
+          itemsDiv.innerHTML = JSON.stringify(tableData.items);
+          columnsDiv.innerHTML = JSON.stringify(tableData.columns);
+          headerDiv.innerHTML = JSON.stringify(tableData.header);
+        })
+      },
+      _showGynecology: function() {
+        var itemsDiv = this.$.itemsDiv;
+        var columnsDiv = this.$.columnsDiv;
+        var headerDiv = this.$.headerDiv;
+        this.getTableData(0, "allocationData", "gynecology", function(tableData) {
+          itemsDiv.innerHTML = JSON.stringify(tableData.items);
+          columnsDiv.innerHTML = JSON.stringify(tableData.columns);
+          headerDiv.innerHTML = JSON.stringify(tableData.header);
+        })
+      }
+    })
+  </script>
+</dom-module>

@@ -1,6 +1,6 @@
 # \<klima-results-cache\>
 
-Fetches result from Klima server and prepares data for views
+Gives an element access to Klima results
 
 ## Install the Polymer-CLI
 
