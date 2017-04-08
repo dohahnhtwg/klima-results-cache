@@ -29,7 +29,6 @@ var KlimaResultsBehavior = (function () {
             ajaxEle.setAttribute("id", "resultsAjax");
             ajaxEle.setAttribute("auto", "true");
             ajaxEle.setAttribute("handle-as", "json");
-            ajaxEle.setAttribute("url", "/test.json");
             document.body.appendChild(ajaxEle);
           }
           return ajaxEle;
@@ -44,9 +43,9 @@ var KlimaResultsBehavior = (function () {
     getChartData: function(domainName, departmentName, valueOfInterest, callback) {
       var department = this[domainName][departmentName];
       if(!department) {
-        this.$.ajax.url = "something";
+        this.$.ajax.url = "allocationData";
         this.$.ajax.response = function(e) {
-          allocationData[department] = e.result.data;
+          allocationData[department] = e.detail.response;
           var chartData = this._buildChartData(department, valueOfInterest);
           callback(chartData);
         }
@@ -78,33 +77,70 @@ var KlimaResultsBehavior = (function () {
         this.ajax.setAttribute("url", "/" + domainKey + ".json");
         this.ajax.addEventListener("response", function(e) {
           this.results[domainKey] = e.detail.response;
-          var tableData = this._buildTableData(period, departmentKey, e.detail.response);
+          var tableData = this._buildTableData(period, e.detail.response, departmentKey);
           callback(tableData);
-        });
+        }.bind(this));
       } else {
 
       }
     },
 
-    _buildTableData: function(period, departmentKey, domain) {
-      console.log("moment");
+    _buildTableData: function(period, domain, departmentKey) {
+      var department = this._getDepartment(domain, departmentKey);
+      var periodResults = department.periodResults[period];
+      var tableData = {};
+      tableData.items = this._buildTableItems(periodResults);
+      tableData.columns = this._buildTableColumns(periodResults);
+      tableData.header = this._buildHeader(periodResults);
+      return tableData
+    },
+
+    _getDepartment: function(domain, departmentKey) {
       return domain.departmentResults.find(function(department) {
-        console.log(department);
         return department.key ===  departmentKey;
       });
+    },
+
+    _buildTableItems: function(periodResults) {
+      var items = [];
+      periodResults.rows.forEach(function(entry) {
+        var preparedEntry = {description: entry.caption};
+          for(var i=0;i<entry.values.length;i++) {
+            preparedEntry[periodResults.columns[i].key] = entry.values[i]
+          }
+          items.push(preparedEntry);
+      });
+      return items;
+    },
+
+    _buildTableColumns: function(periodResults) {
+      var columns = [];
+      periodResults.columns.forEach(function(entry) {
+        var preparedEntry = {name: entry.key};
+        columns.push(preparedEntry);
+      });
+      return columns;
+    },
+
+    _buildHeader: function(periodResults) {
+      var header = [];
+      periodResults.columns.forEach(function(entry) {
+        header.push(entry.caption);
+      });
+      return header;
     }
   };
 
   getResults = function() {
     if(results == null) {
       results = {
-        allocationData: {},
-        contributionMargin: {},
-        fullCosts: {},
-        periodResults: {},
-        personal: {},
-        arrivalRates: {},
-        qualities: {}
+        allocationData: null,
+        contributionMargin: null,
+        fullCosts: null,
+        periodResults: null,
+        personal: null,
+        arrivalRates: null,
+        qualities: null
       };
       return results;
     }
