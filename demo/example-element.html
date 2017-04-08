@@ -17,16 +17,16 @@
       <paper-button raised on-tap="_showSurgicalWard">Surgical Ward</paper-button>
       <paper-button raised on-tap="_showGynecology">Gynecology</paper-button>
       <h3>Items:</h3>
-      <div id="itemsDiv">
-        No Data
+      <div>
+        [[items]]
       </div>
       <h3>Columns:</h3>
-      <div id="columnsDiv">
-        No Data
+      <div>
+        [[columns]]
       </div>
       <h3>Header:</h3>
-      <div id="headerDiv">
-        No Data
+      <div>
+        [[header]]
       </div>
     </div>
   </template>
@@ -34,46 +34,45 @@
     Polymer({
       is: 'example-element',
       behaviors: [KlimaResultsBehavior],
+      properties: {
+        items: {
+          type: String,
+          value: "No Data"
+        },
+        columns: {
+          type: String,
+          value: "No Data"
+        },
+        header: {
+          type: String,
+          value: "No Data"
+        }
+      },
 
       _showTotalHospital: function() {
-        var itemsDiv = this.$.itemsDiv;
-        var columnsDiv = this.$.columnsDiv;
-        var headerDiv = this.$.headerDiv;
         this.getTableData(0, "allocationData", "total", function(tableData) {
-          itemsDiv.innerHTML = JSON.stringify(tableData.items);
-          columnsDiv.innerHTML = JSON.stringify(tableData.columns);
-          headerDiv.innerHTML = JSON.stringify(tableData.header);
-        })
+          this._changeContent(tableData);
+        }.bind(this))
       },
       _showInternalMedicine: function() {
-        var itemsDiv = this.$.itemsDiv;
-        var columnsDiv = this.$.columnsDiv;
-        var headerDiv = this.$.headerDiv;
-        this.getTableData(0, "allocationData", "internal", function(tableData) {
-          itemsDiv.innerHTML = JSON.stringify(tableData.items);
-          columnsDiv.innerHTML = JSON.stringify(tableData.columns);
-          headerDiv.innerHTML = JSON.stringify(tableData.header);
-        })
+        this.getTableData(0, "allocationData", "internalMedicine", function(tableData) {
+          this._changeContent(tableData);
+        }.bind(this))
       },
       _showSurgicalWard: function() {
-        var itemsDiv = this.$.itemsDiv;
-        var columnsDiv = this.$.columnsDiv;
-        var headerDiv = this.$.headerDiv;
-        this.getTableData(0, "allocationData", "surgery", function(tableData) {
-          itemsDiv.innerHTML = JSON.stringify(tableData.items);
-          columnsDiv.innerHTML = JSON.stringify(tableData.columns);
-          headerDiv.innerHTML = JSON.stringify(tableData.header);
-        })
+        this.getTableData(0, "allocationData", "surgicalWard", function(tableData) {
+          this._changeContent(tableData);
+        }.bind(this))
       },
       _showGynecology: function() {
-        var itemsDiv = this.$.itemsDiv;
-        var columnsDiv = this.$.columnsDiv;
-        var headerDiv = this.$.headerDiv;
         this.getTableData(0, "allocationData", "gynecology", function(tableData) {
-          itemsDiv.innerHTML = JSON.stringify(tableData.items);
-          columnsDiv.innerHTML = JSON.stringify(tableData.columns);
-          headerDiv.innerHTML = JSON.stringify(tableData.header);
-        })
+          this._changeContent(tableData);
+        }.bind(this))
+      },
+      _changeContent: function(tableData)  {
+        this.items = JSON.stringify(tableData.items);
+        this.columns = JSON.stringify(tableData.columns);
+        this.header = JSON.stringify(tableData.header);
       }
     })
   </script>
