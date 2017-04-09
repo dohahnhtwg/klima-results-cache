@@ -67,9 +67,9 @@ var KlimaResultsBehavior = (function () {
 
     _buildChartCols: function(department, valueOfInterest) {
       var cols = [];
-      cols.push({label: "period", type: "Number"})
+      cols.push({label: "period", type: "number"})
       department.periodResults[0].columns.forEach(function(entry) {
-        cols.push({label: entry.caption, type: "Number"})
+        cols.push({label: entry.caption, type: "number"})
       })
       return cols;
     },
@@ -83,7 +83,7 @@ var KlimaResultsBehavior = (function () {
         }).values;
         var rowOfInterest = [i];
         values.forEach(function(value) {
-          rowOfInterest.push(value);
+          rowOfInterest.push(parseFloat(value));
         });
         rows.push(rowOfInterest);
         i++;
