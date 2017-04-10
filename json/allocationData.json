@@ -1,360 +1,360 @@
-{  
+{
    "caption":"Belegungsdaten",
    "key":"allocationData",
-   "departmentResults":[  
-      {  
+   "departmentResults":[
+      {
          "caption":"Gesamtes Krankenhaus",
          "key":"total",
-         "periodResults":[  
-            {  
-               "rows":[  
-                  {  
+         "periodResults":[
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0"
                      ]
                   },
-                  {  
-                     "caption":"Angekommene Patienten",
-                     "key":"arrivedPatients",
+                  {
+                     "caption":"Anzahl Patienten",
+                     "key":"numPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "700",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "700",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "690",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "10",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "14",
                         "20",
                         "20"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Belegungsgrad (Notfall)",
                      "key":"occupancyEmergency",
                      "isMerged":true,
-                     "values":[  
+                     "values":[
                         "",
                         "",
                         "0.0"
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"Innere Medizin",
                      "key":"internal"
                   },
-                  {  
+                  {
                      "caption":"Chirurgie",
                      "key":"surgery"
                   },
-                  {  
+                  {
                      "caption":"GynÃ¤kologie",
                      "key":"gynecology"
                   }
                ]
             },
-            {  
-               "rows":[  
-                  {  
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0"
                      ]
                   },
-                  {  
-                     "caption":"Angekommene Patienten",
-                     "key":"arrivedPatients",
+                  {
+                     "caption":"Anzahl Patienten",
+                     "key":"numPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "700",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "700",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "690",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "10",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "14",
                         "20",
                         "20"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Belegungsgrad (Notfall)",
                      "key":"occupancyEmergency",
                      "isMerged":true,
-                     "values":[  
+                     "values":[
                         "",
                         "",
                         "0.0"
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"Innere Medizin",
                      "key":"internal"
                   },
-                  {  
+                  {
                      "caption":"Chirurgie",
                      "key":"surgery"
                   },
-                  {  
+                  {
                      "caption":"GynÃ¤kologie",
                      "key":"gynecology"
                   }
                ]
             },
-            {  
-               "rows":[  
-                  {  
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0"
                      ]
                   },
-                  {  
-                     "caption":"Angekommene Patienten",
-                     "key":"arrivedPatients",
+                  {
+                     "caption":"Anzahl Patienten",
+                     "key":"numPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "700",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "700",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "440",
                         "690",
                         "300"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "10",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "14",
                         "20",
                         "20"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0",
                         "0",
                         "0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Belegungsgrad (Notfall)",
                      "key":"occupancyEmergency",
                      "isMerged":true,
-                     "values":[  
+                     "values":[
                         "",
                         "",
                         "0.0"
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"Innere Medizin",
                      "key":"internal"
                   },
-                  {  
+                  {
                      "caption":"Chirurgie",
                      "key":"surgery"
                   },
-                  {  
+                  {
                      "caption":"GynÃ¤kologie",
                      "key":"gynecology"
                   }
@@ -362,17 +362,17 @@
             }
          ]
       },
-      {  
+      {
          "caption":"Innere Medizin",
          "key":"internalMedicine",
-         "periodResults":[  
-            {  
-               "rows":[  
-                  {  
+         "periodResults":[
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0",
@@ -381,11 +381,11 @@
                         "1.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "100.0",
@@ -394,11 +394,11 @@
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "100.0",
@@ -407,11 +407,11 @@
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -420,11 +420,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "4.0",
                         "4.0",
                         "20.0",
@@ -433,11 +433,11 @@
                         "20.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -446,11 +446,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -459,11 +459,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -473,40 +473,40 @@
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg1",
                      "key":"drg1"
                   },
-                  {  
+                  {
                      "caption":"drg2",
                      "key":"drg2"
                   },
-                  {  
+                  {
                      "caption":"drg3",
                      "key":"drg3"
                   },
-                  {  
+                  {
                      "caption":"drg4",
                      "key":"drg4"
                   },
-                  {  
+                  {
                      "caption":"drg5",
                      "key":"drg5"
                   },
-                  {  
+                  {
                      "caption":"drg6",
                      "key":"drg6"
                   }
                ]
             },
-            {  
-               "rows":[  
-                  {  
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0",
@@ -515,11 +515,11 @@
                         "1.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "100.0",
@@ -528,11 +528,11 @@
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "100.0",
@@ -541,11 +541,11 @@
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -554,11 +554,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "4.0",
                         "4.0",
                         "20.0",
@@ -567,11 +567,11 @@
                         "20.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -580,11 +580,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -593,11 +593,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -607,40 +607,40 @@
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg1",
                      "key":"drg1"
                   },
-                  {  
+                  {
                      "caption":"drg2",
                      "key":"drg2"
                   },
-                  {  
+                  {
                      "caption":"drg3",
                      "key":"drg3"
                   },
-                  {  
+                  {
                      "caption":"drg4",
                      "key":"drg4"
                   },
-                  {  
+                  {
                      "caption":"drg5",
                      "key":"drg5"
                   },
-                  {  
+                  {
                      "caption":"drg6",
                      "key":"drg6"
                   }
                ]
             },
-            {  
-               "rows":[  
-                  {  
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0",
@@ -649,11 +649,11 @@
                         "1.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "100.0",
@@ -662,11 +662,11 @@
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "100.0",
@@ -675,11 +675,11 @@
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -688,11 +688,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "4.0",
                         "4.0",
                         "20.0",
@@ -701,11 +701,11 @@
                         "20.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -714,11 +714,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -727,11 +727,11 @@
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -741,28 +741,28 @@
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg1",
                      "key":"drg1"
                   },
-                  {  
+                  {
                      "caption":"drg2",
                      "key":"drg2"
                   },
-                  {  
+                  {
                      "caption":"drg3",
                      "key":"drg3"
                   },
-                  {  
+                  {
                      "caption":"drg4",
                      "key":"drg4"
                   },
-                  {  
+                  {
                      "caption":"drg5",
                      "key":"drg5"
                   },
-                  {  
+                  {
                      "caption":"drg6",
                      "key":"drg6"
                   }
@@ -770,17 +770,17 @@
             }
          ]
       },
-      {  
+      {
          "caption":"Chirurgie",
          "key":"surgicalWard",
-         "periodResults":[  
-            {  
-               "rows":[  
-                  {  
+         "periodResults":[
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0",
@@ -791,11 +791,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0",
@@ -806,11 +806,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "95.0",
                         "95.0",
                         "100.0",
@@ -821,11 +821,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "5.0",
                         "5.0",
                         "0.0",
@@ -836,11 +836,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "20.0",
@@ -851,11 +851,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -866,11 +866,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -881,11 +881,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -897,48 +897,48 @@
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg7",
                      "key":"drg7"
                   },
-                  {  
+                  {
                      "caption":"drg8",
                      "key":"drg8"
                   },
-                  {  
+                  {
                      "caption":"drg9",
                      "key":"drg9"
                   },
-                  {  
+                  {
                      "caption":"drg10",
                      "key":"drg10"
                   },
-                  {  
+                  {
                      "caption":"drg11",
                      "key":"drg11"
                   },
-                  {  
+                  {
                      "caption":"drg12",
                      "key":"drg12"
                   },
-                  {  
+                  {
                      "caption":"drg13",
                      "key":"drg13"
                   },
-                  {  
+                  {
                      "caption":"drg14",
                      "key":"drg14"
                   }
                ]
             },
-            {  
-               "rows":[  
-                  {  
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0",
@@ -949,11 +949,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0",
@@ -964,11 +964,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "95.0",
                         "95.0",
                         "100.0",
@@ -979,11 +979,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "5.0",
                         "5.0",
                         "0.0",
@@ -994,11 +994,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "20.0",
@@ -1009,11 +1009,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -1024,11 +1024,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -1039,11 +1039,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -1055,48 +1055,48 @@
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg7",
                      "key":"drg7"
                   },
-                  {  
+                  {
                      "caption":"drg8",
                      "key":"drg8"
                   },
-                  {  
+                  {
                      "caption":"drg9",
                      "key":"drg9"
                   },
-                  {  
+                  {
                      "caption":"drg10",
                      "key":"drg10"
                   },
-                  {  
+                  {
                      "caption":"drg11",
                      "key":"drg11"
                   },
-                  {  
+                  {
                      "caption":"drg12",
                      "key":"drg12"
                   },
-                  {  
+                  {
                      "caption":"drg13",
                      "key":"drg13"
                   },
-                  {  
+                  {
                      "caption":"drg14",
                      "key":"drg14"
                   }
                ]
             },
-            {  
-               "rows":[  
-                  {  
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0",
@@ -1107,11 +1107,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0",
@@ -1122,11 +1122,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "95.0",
                         "95.0",
                         "100.0",
@@ -1137,11 +1137,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "5.0",
                         "5.0",
                         "0.0",
@@ -1152,11 +1152,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "20.0",
@@ -1167,11 +1167,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -1182,11 +1182,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -1197,11 +1197,11 @@
                         ""
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0",
@@ -1213,36 +1213,36 @@
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg7",
                      "key":"drg7"
                   },
-                  {  
+                  {
                      "caption":"drg8",
                      "key":"drg8"
                   },
-                  {  
+                  {
                      "caption":"drg9",
                      "key":"drg9"
                   },
-                  {  
+                  {
                      "caption":"drg10",
                      "key":"drg10"
                   },
-                  {  
+                  {
                      "caption":"drg11",
                      "key":"drg11"
                   },
-                  {  
+                  {
                      "caption":"drg12",
                      "key":"drg12"
                   },
-                  {  
+                  {
                      "caption":"drg13",
                      "key":"drg13"
                   },
-                  {  
+                  {
                      "caption":"drg14",
                      "key":"drg14"
                   }
@@ -1250,299 +1250,299 @@
             }
          ]
       },
-      {  
+      {
          "caption":"GynÃ¤kologie",
          "key":"gynecology",
-         "periodResults":[  
-            {  
-               "rows":[  
-                  {  
+         "periodResults":[
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "20.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg15",
                      "key":"drg15"
                   },
-                  {  
+                  {
                      "caption":"drg16",
                      "key":"drg16"
                   },
-                  {  
+                  {
                      "caption":"drg17",
                      "key":"drg17"
                   }
                ]
             },
-            {  
-               "rows":[  
-                  {  
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "20.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg15",
                      "key":"drg15"
                   },
-                  {  
+                  {
                      "caption":"drg16",
                      "key":"drg16"
                   },
-                  {  
+                  {
                      "caption":"drg17",
                      "key":"drg17"
                   }
                ]
             },
-            {  
-               "rows":[  
-                  {  
+            {
+               "rows":[
+                  {
                      "caption":"Belegungsgrad",
                      "key":"hospital.results.occupancyLevel",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "1.0",
                         "1.0",
                         "1.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Angekommene Patienten",
                      "key":"hospital.results.arrivedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene Patienten",
                      "key":"hospital.results.acceptedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "100.0",
                         "100.0",
                         "100.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Abgewiesene Patienten",
                      "key":"hospital.results.rejectedPatients",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Aufgenommene NotfÃ¤lle",
                      "key":"hospital.results.acceptedEmergencies",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "20.0",
                         "20.0",
                         "20.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"trotz Vollbelegung",
                      "key":"hospital.results.inSpiteOfFullOccupancy",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Bettenverschwendung",
                      "key":"hospital.results.wasteOfBeds",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   },
-                  {  
+                  {
                      "caption":"Ã„quivalenzpunkte",
                      "key":"hospital.results.equivalencePoints",
                      "isMerged":false,
-                     "values":[  
+                     "values":[
                         "0.0",
                         "0.0",
                         "0.0"
                      ]
                   }
                ],
-               "columns":[  
-                  {  
+               "columns":[
+                  {
                      "caption":"drg15",
                      "key":"drg15"
                   },
-                  {  
+                  {
                      "caption":"drg16",
                      "key":"drg16"
                   },
-                  {  
+                  {
                      "caption":"drg17",
                      "key":"drg17"
                   }

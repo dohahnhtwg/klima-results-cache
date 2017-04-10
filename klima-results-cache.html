@@ -42,7 +42,7 @@ var KlimaResultsBehavior = (function () {
     getChartData: function(valueOfInterest, domainKey, departmentKey, callback) {
       var domain = this.results[domainKey];
       if(!domain) {
-        this.ajax.setAttribute("url", "/" + domainKey + ".json");
+        this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
         this.ajax.generateRequest();
         this.ajax.addEventListener("response", function(e) {
           this.results[domainKey] = e.detail.response;
@@ -94,7 +94,7 @@ var KlimaResultsBehavior = (function () {
     getTableData: function(period, domainKey, departmentKey, callback) {
       var domain = this.results[domainKey];
       if(!domain) {
-        this.ajax.setAttribute("url", "/" + domainKey + ".json");
+        this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
         this.ajax.generateRequest();
         this.ajax.addEventListener("response", function(e) {
           this.results[domainKey] = e.detail.response;
