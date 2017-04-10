@@ -43,7 +43,6 @@ var KlimaResultsBehavior = (function () {
       var domain = this.results[domainKey];
       if(!domain) {
         var responseMethod = function(e) {
-          console.log("fired");
           this.ajax.removeEventListener("response", responseMethod);
           this.results[domainKey] = e.detail.response;
           var chartData = this._buildChartData(valueOfInterest,
@@ -70,7 +69,7 @@ var KlimaResultsBehavior = (function () {
 
     _buildChartCols: function(department, valueOfInterest) {
       var cols = [];
-      cols.push({label: "period", type: "number"})
+      cols.push({label: "period", type: "string"})
       department.periodResults[0].columns.forEach(function(entry) {
         cols.push({label: entry.caption, type: "number"})
       })
@@ -84,7 +83,7 @@ var KlimaResultsBehavior = (function () {
         var values = periodResult.rows.find(function(row) {
           return row.key === valueOfInterest;
         }).values;
-        var rowOfInterest = [i];
+        var rowOfInterest = [i.toString()];
         values.forEach(function(value) {
           rowOfInterest.push(parseFloat(value));
         });
