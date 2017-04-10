@@ -42,14 +42,17 @@ var KlimaResultsBehavior = (function () {
     getChartData: function(valueOfInterest, domainKey, departmentKey, callback) {
       var domain = this.results[domainKey];
       if(!domain) {
-        this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
-        this.ajax.generateRequest();
-        this.ajax.addEventListener("response", function(e) {
+        var responseMethod = function(e) {
+          console.log("fired");
+          this.ajax.removeEventListener("response", responseMethod);
           this.results[domainKey] = e.detail.response;
           var chartData = this._buildChartData(valueOfInterest,
             e.detail.response, departmentKey);
           callback(chartData);
-        }.bind(this));
+        }.bind(this);
+        this.ajax.addEventListener("response", responseMethod);
+        this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
+        this.ajax.generateRequest()
       } else {
         var chartData = this._buildChartData(valueOfInterest,
           this.results[domainKey], departmentKey);
