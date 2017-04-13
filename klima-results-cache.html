@@ -31,11 +31,11 @@ var KlimaResultsBehavior = (function () {
             document.body.appendChild(ajaxEle);
           }
           return ajaxEle;
-        }		        
-	  },
+        }
+      },
       colors: {
         type: Array,
-        value: ['#f44336','#2196f3', '#4caf50', '#fdd835', '#ff9800', '#00bcd4', '#9c27b0', '#cddc39', '#e91e63', '#009688']
+        value: ['#f44336','#2196f3', '#4caf50', '#ffeb3b', '#ff9800', '#00bcd4', '#9c27b0', '#cddc39', '#e91e63', '#009688']
       }
     },
 
@@ -73,10 +73,13 @@ var KlimaResultsBehavior = (function () {
 
     _buildChartCols: function(department, valueOfInterest) {
       var cols = [];
-      cols.push({label: "period", type: "string", id: "period"})
-      department.periodResults[0].columns.forEach(function(entry) {
-        cols.push({label: entry.caption, type: "number", id: entry.key})
-      })
+      cols.push({label: "period", type: "string", id: "period", color: 'black'})
+      for(var i = 0; i < department.periodResults[0].columns.length; i++) {
+        cols.push({id: department.periodResults[0].columns[i].key,
+          label: department.periodResults[0].columns[i].caption,
+          type: "number",
+          color: this.colors[i]});
+      };
       return cols;
     },
 
