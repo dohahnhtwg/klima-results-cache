@@ -41,6 +41,10 @@
         }
       },
 
+      ready: function() {
+        this.randomNumbers = true;
+      },
+
       _showInternalMedicineAccepted: function() {
         this.getChartData("hospital.results.acceptedPatients", "allocationData", "internalMedicine", function(chartData) {
           this._changeContent(chartData);

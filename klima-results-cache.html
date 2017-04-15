@@ -14,12 +14,18 @@ var KlimaResultsBehavior = (function () {
 
   var klimaResults = {
     properties: {
+      /**
+       Klima results. (shared by all elements)
+      */
       results: {
         type: Object,
         value: function() {
           return getResults();
         }
       },
+      /**
+       Ajax element for the requests. (shared by all elements)
+      */
       ajax: {
         type: Object,
         value: function() {
@@ -33,16 +39,31 @@ var KlimaResultsBehavior = (function () {
           return ajaxEle;
         }
       },
+      /**
+       Colors for the columns.
+      */
       colors: {
         type: Array,
         value: ['#f44336','#2196f3', '#4caf50', '#ffeb3b', '#ff9800', '#00bcd4', '#9c27b0', '#cddc39', '#e91e63', '#009688']
+      },
+      /**
+       When true numbers a random. (Only for charts)
+      */
+      randomNumbers: {
+        type: Boolean,
+        value: false
       }
     },
 
-    ready: function() {
-
-    },
-
+    /**
+     Get the Klima Results for google-charts.
+     @param {string} valueOfInterest the name of the value.
+     @param {string} domainKey the name of the domain.
+     @param {string} departmentKey the name of the department.
+     @param {string} departmentKey the name of the department.
+     @param {Requester~requestCallback} callback - The callback that handles the data.
+     @return A object with teh rows and cols for the google-chart element.
+    */
     getChartData: function(valueOfInterest, domainKey, departmentKey, callback) {
       var domain = this.results[domainKey];
       if(!domain) {
@@ -66,7 +87,12 @@ var KlimaResultsBehavior = (function () {
     _buildChartData: function(valueOfInterest, domain, departmentKey) {
       var department = this._getDepartment(domain, departmentKey);
       var cols = this._buildChartCols(department, valueOfInterest);
-      var rows = this._buildChartRows(department, valueOfInterest);
+      var rows = null;
+      if(this.randomNumbers) {
+        rows = this._buildRandomRow(3, cols.length - 1, 0, 100);
+      } else {
+        rows = this._buildChartRows(department, valueOfInterest);
+      }
       var chartData = {cols: cols, rows: rows};
       return chartData;
     },
@@ -100,6 +126,15 @@ var KlimaResultsBehavior = (function () {
       return rows;
     },
 
+    /**
+     Get the Klima Results for vaadin-grid.
+     @param {string} valueOfInterest the name of the value.
+     @param {string} domainKey the name of the domain.
+     @param {string} departmentKey the name of the department.
+     @param {string} departmentKey the name of the department.
+     @param {Requester~requestCallback} callback - The callback that handles the data.
+     @return A object with rows and cols for the vaadin-grid element.
+    */
     getTableData: function(period, domainKey, departmentKey, callback) {
       var domain = this.results[domainKey];
       if(!domain) {
@@ -163,6 +198,22 @@ var KlimaResultsBehavior = (function () {
         header.push(entry.caption);
       });
       return header;
+    },
+
+    _getRandomResult: function(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+
+    _buildRandomRow: function(numOfPeriods, numOfCols, min, max) {
+      var rows = [];
+      for(var i = 0; i < numOfPeriods; i++) {
+        var row = [i.toString()];
+        for(var j = 0; j < numOfCols; j++) {
+          row.push(this._getRandomResult(min, max));
+        }
+        rows.push(row);
+      }
+      return rows;
     }
   };
 
