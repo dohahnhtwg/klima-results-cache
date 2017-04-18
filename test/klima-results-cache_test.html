@@ -29,10 +29,21 @@
         test('instantiating the element works', function() {
           var elem = fixture("basic");
         });
-        test('server', function(done) {
+        test('getChartData should build and return data for the chart', function(done) {
           var elem = fixture('basic');
           elem.getChartData('arrivedPatients', 'allocationData', 'total', function(chartData) {
             console.log(chartData);
+            expect(chartData.cols).to.have.lengthOf(4);
+            expect(chartData.cols[1].color).to.be.equal('#f44336');
+            expect(chartData.cols[1].id).to.be.equal('internal');
+            expect(chartData.cols[1].label).to.be.equal('Innere Medizin');
+            expect(chartData.cols[1].type).to.be.equal('number');
+            expect(chartData.rows).to.have.lengthOf(1);
+            expect(chartData.rows[0]).to.have.lengthOf(4);
+            expect(chartData.rows[0][0]).to.be.equal("0");
+            expect(chartData.rows[0][1]).to.be.equal(440);
+            expect(chartData.rows[0][2]).to.be.equal(700);
+            expect(chartData.rows[0][3]).to.be.equal(300);
             done();
           });
           server.respond();
