@@ -48,6 +48,29 @@
           });
           server.respond();
         });
+        test('getTableData should build and return data for the table', function(done) {
+          var elem = fixture('basic');
+          elem.getTableData(0, 'allocationData', 'total', function(tableData) {
+            console.log(tableData);
+            expect(tableData.columns).to.have.lengthOf(4);
+            expect(tableData.columns[0].name).to.be.equal('description');
+            expect(tableData.columns[1].name).to.be.equal('internal');
+            expect(tableData.columns[2].name).to.be.equal('surgery');
+            expect(tableData.columns[3].name).to.be.equal('gynecology');
+            expect(tableData.header).to.have.lengthOf(4);
+            expect(tableData.header[0]).to.be.equal('');
+            expect(tableData.header[1]).to.be.equal('Innere Medizin');
+            expect(tableData.header[2]).to.be.equal('Chirurgie');
+            expect(tableData.header[3]).to.be.equal('Gynäkologie');
+            expect(tableData.items).to.have.lengthOf(2);
+            expect(tableData.items[1].description).to.be.equal('Angekommene Patienten');
+            expect(tableData.items[1].internal).to.be.equal('440');
+            expect(tableData.items[1].surgery).to.be.equal('700');
+            expect(tableData.items[1].gynecology).to.be.equal('300');
+            done();
+          });
+          server.respond();
+        });
       });
     </script>
     <script>
@@ -91,7 +114,7 @@
                       "key":"surgery"
                    },
                    {
-                      "caption":"GynÃ¤kologie",
+                      "caption":"Gynäkologie",
                       "key":"gynecology"
                    }
                 ]
