@@ -1,14 +1,26 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../klima-results-cache.html">
 
-<dom-module id="test-menu">
-  <template>
+<dom-module id="test-element">
 
+  <template>
+    <div>NOPE</div>
   </template>
-  <script>
-      Polymer({
-        is: 'test-element',
-        behaviors: [KlimaResultsBehavior]
-      });
-  </script>
+
 </dom-module>
+
+<script>
+(function() {
+  Polymer({
+    is: 'test-element',
+    behaviors: [
+      KlimaResultsBehavior
+    ],
+    getpff: function() {
+      this.getChartData("hospital.results.acceptedPatients", "allocationData", "internalMedicine", function(chartData) {
+        console.log(chartData);
+      });
+    }
+  });
+})();
+</script>

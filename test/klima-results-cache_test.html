@@ -9,7 +9,6 @@
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
     <link rel="import" href="test-element.html">
-    <link rel="import" href="../klima-results-cache.html">
   </head>
   <body>
     <test-fixture id="basic">
@@ -19,12 +18,81 @@
     </test-fixture>
 
     <script>
+      var server = null;
+      setup(function() {
+        server = sinon.fakeServer.create();
+        server.respondWith('GET', /.*/, [200, {'Content-Type': 'application/json'},
+          JSON.stringify(allocationData)
+        ])
+      });
       suite('klima-results-cache', function() {
         test('instantiating the element works', function() {
-          var element = fixture('basic');
-          assert.equal(element.is, 'test-element');
+          var elem = fixture("basic");
+        });
+        test('server', function(done) {
+          var elem = fixture('basic');
+          elem.getChartData('arrivedPatients', 'allocationData', 'total', function(chartData) {
+            console.log(chartData);
+            done();
+          });
+          server.respond();
         });
       });
+    </script>
+    <script>
+      var allocationData = {"caption":"Belegungsdaten",
+        "key":"allocationData",
+        "departmentResults":[
+          {
+            "caption":"Gesamtes Krankenhaus",
+            "key":"total",
+            "periodResults":[
+              {
+                "rows":[
+                  {
+                    "caption":"Belegungsgrad",
+                    "key":"occupancyLevel",
+                    "isMerged":false,
+                    "values":[
+                      "1.0",
+                      "1.0",
+                      "1.0"
+                    ]
+                  },
+                  {
+                    "caption":"Angekommene Patienten",
+                    "key":"arrivedPatients",
+                    "isMerged":false,
+                    "values":[
+                      "440",
+                      "700",
+                      "300"
+                    ]
+                  }
+                ],
+                "columns":[
+                   {
+                      "caption":"Innere Medizin",
+                      "key":"internal"
+                   },
+                   {
+                      "caption":"Chirurgie",
+                      "key":"surgery"
+                   },
+                   {
+                      "caption":"GynÃ¤kologie",
+                      "key":"gynecology"
+                   }
+                ]
+              }
+            ]
+          }, {
+            "caption":"Innere Medizin",
+            "key":"internalMedicine",
+            "periodResults":[]
+          }
+        ]
+      }
     </script>
   </body>
 </html>
