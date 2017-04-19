@@ -25,6 +25,9 @@
           JSON.stringify(allocationData)
         ])
       });
+      teardown(function() {
+        console.log(server.requests);
+      });
       suite('klima-results-cache', function() {
         test('instantiating the element works', function() {
           var elem = fixture("basic");
@@ -32,7 +35,6 @@
         test('getChartData should build and return data for the chart', function(done) {
           var elem = fixture('basic');
           elem.getChartData('arrivedPatients', 'allocationData', 'total', function(chartData) {
-            console.log(chartData);
             expect(chartData.cols).to.have.lengthOf(4);
             expect(chartData.cols[1].color).to.be.equal('#f44336');
             expect(chartData.cols[1].id).to.be.equal('internal');
@@ -51,7 +53,6 @@
         test('getTableData should build and return data for the table', function(done) {
           var elem = fixture('basic');
           elem.getTableData(0, 'allocationData', 'total', function(tableData) {
-            console.log(tableData);
             expect(tableData.columns).to.have.lengthOf(4);
             expect(tableData.columns[0].name).to.be.equal('description');
             expect(tableData.columns[1].name).to.be.equal('internal');
