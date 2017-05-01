@@ -56,25 +56,52 @@ var KlimaResultsBehavior = (function () {
     },
 
     /**
+     Clears the cache, useful for tests
+    */
+    clearCache: function() {
+      this.results.allocationData = null;
+      this.results.contributionMargin = null;
+      this.results.fullCosts = null;
+      this.results.periodResults = null;
+      this.results.personal = null;
+      this.results.arrivalRates = null;
+      this.results.qualities = null;
+    },
+
+    /**
+     * Callback for getting chart Data.
+     *
+     * @callback chartDataCallback
+     * @param {object} chartData - The result as chart represntation.
+     * @param {Boolean} error - True if the server reponds with an error
+     */
+
+    /**
      Get the Klima Results for google-charts.
      @param {string} valueOfInterest the name of the value.
      @param {string} domainKey the name of the domain.
      @param {string} departmentKey the name of the department.
      @param {string} departmentKey the name of the department.
-     @param {Requester~requestCallback} callback - The callback that handles the data.
+     @param {Requester~requestCallback} chartDataCallback - The callback that handles the data.
      @return A object with teh rows and cols for the google-chart element.
     */
-    getChartData: function(valueOfInterest, domainKey, departmentKey, callback) {
+    getChartData: function(valueOfInterest, domainKey, departmentKey, chartDataCallback) {
       var domain = this.results[domainKey];
       if(!domain) {
         var responseMethod = function(e) {
           this.ajax.removeEventListener("response", responseMethod);
-          this.results[domainKey] = e.detail.response;
-          var chartData = this._buildChartData(valueOfInterest,
-            e.detail.response, departmentKey);
-          callback(chartData);
+          this.ajax.removeEventListener("error", responseMethod);
+          if(e.type === "error") {
+            chartDataCallback(null, true);
+          } else {
+            this.results[domainKey] = e.detail.response;
+            var chartData = this._buildChartData(valueOfInterest,
+              e.detail.response, departmentKey);
+            chartDataCallback(chartData, false);
+          }
         }.bind(this);
         this.ajax.addEventListener("response", responseMethod);
+        this.ajax.addEventListener("error", responseMethod);
         this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
         this.ajax.generateRequest()
       } else {
@@ -127,25 +154,41 @@ var KlimaResultsBehavior = (function () {
     },
 
     /**
+     * Callback for getting chart Data.
+     *
+     * @callback tableDataCallback
+     * @param {object} tableData - The result as table represntation.
+     * @param {Boolean} error - True if the server reponds with an error
+     */
+
+    /**
      Get the Klima Results for vaadin-grid.
      @param {string} valueOfInterest the name of the value.
      @param {string} domainKey the name of the domain.
      @param {string} departmentKey the name of the department.
      @param {string} departmentKey the name of the department.
-     @param {Requester~requestCallback} callback - The callback that handles the data.
+     @param {Requester~requestCallback} tableDataCallback - The callback that handles the data.
      @return A object with rows and cols for the vaadin-grid element.
     */
-    getTableData: function(period, domainKey, departmentKey, callback) {
+    getTableData: function(period, domainKey, departmentKey, tableDataCallback) {
       var domain = this.results[domainKey];
       if(!domain) {
         this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
+        var responseMethod = function(e) {
+          this.ajax.removeEventListener("response", responseMethod);
+          this.ajax.removeEventListener("error", responseMethod);
+          if(e.type === "error") {
+            tableDataCallback(tableData, true);
+          } else {
+            this.results[domainKey] = e.detail.response;
+            var tableData = this._buildTableData(period,
+              e.detail.response, departmentKey);
+            tableDataCallback(tableData, false);
+          }
+        }.bind(this);
+        this.ajax.addEventListener("response", responseMethod);
+        this.ajax.addEventListener("error", responseMethod);
         this.ajax.generateRequest();
-        this.ajax.addEventListener("response", function(e) {
-          this.results[domainKey] = e.detail.response;
-          var tableData = this._buildTableData(period,
-            e.detail.response, departmentKey);
-          callback(tableData);
-        }.bind(this));
       } else {
         var tableData = this._buildTableData(period,
           this.results[domainKey], departmentKey);
