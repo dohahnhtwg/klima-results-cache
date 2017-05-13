@@ -1,6 +1,6 @@
 <link rel="import" href="../klima-results-cache.html">
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-button/paper-button.html">
 <dom-module id="chart-element">
   <style is="custom-style">
     paper-button {
@@ -29,7 +29,7 @@
   <script>
     Polymer({
       is: 'chart-element',
-      behaviors: [KlimaResultsBehavior],
+      behaviors: [klima.KlimaResultsBehavior],
       properties: {
         columns: {
           type: String,

@@ -1,268 +1,22 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 
-<!--
-`klima-results-cache`
+<script>
+window.klima = window.klima || {}
+/**
 Fetches result from Klima server and prepares data for views
 
+@polymerBehavior klima.KlimaResultsBehavior
 @demo demo/index.html
--->
-
-<script>
-var KlimaResultsBehavior = (function () {
-  var results;
-
-  var klimaResults = {
-    properties: {
-      /**
-       Klima results. (shared by all elements)
-      */
-      results: {
-        type: Object,
-        value: function() {
-          return getResults();
-        }
-      },
-      /**
-       Ajax element for the requests. (shared by all elements)
-      */
-      ajax: {
-        type: Object,
-        value: function() {
-          var ajaxEle = document.getElementById("resultsAjax");
-          if(ajaxEle == null) {
-            ajaxEle = document.createElement('iron-ajax');
-            ajaxEle.setAttribute("id", "resultsAjax");
-            ajaxEle.setAttribute("handle-as", "json");
-            document.body.appendChild(ajaxEle);
-          }
-          return ajaxEle;
-        }
-      },
-      /**
-       Colors for the columns.
-      */
-      colors: {
-        type: Array,
-        value: ['#f44336','#2196f3', '#4caf50', '#ffeb3b', '#ff9800', '#00bcd4', '#9c27b0', '#cddc39', '#e91e63', '#009688']
-      },
-      /**
-       When true numbers a random. (Only for charts)
-      */
-      randomNumbers: {
-        type: Boolean,
-        value: false
-      }
-    },
-
+*/
+window.klima.KlimaResultsBehavior = {
+  properties: {
     /**
-     Clears the cache, useful for tests
+     Klima results. (shared by all elements)
     */
-    clearCache: function() {
-      this.results.allocationData = null;
-      this.results.contributionMargin = null;
-      this.results.fullCosts = null;
-      this.results.periodResults = null;
-      this.results.personal = null;
-      this.results.arrivalRates = null;
-      this.results.qualities = null;
-    },
-
-    /**
-     * Callback for getting chart Data.
-     *
-     * @callback chartDataCallback
-     * @param {object} chartData - The result as chart represntation.
-     * @param {Boolean} error - True if the server reponds with an error
-     */
-
-    /**
-     Get the Klima Results for google-charts.
-     @param {string} valueOfInterest the name of the value.
-     @param {string} domainKey the name of the domain.
-     @param {string} departmentKey the name of the department.
-     @param {string} departmentKey the name of the department.
-     @param {Requester~requestCallback} chartDataCallback - The callback that handles the data.
-     @return A object with teh rows and cols for the google-chart element.
-    */
-    getChartData: function(valueOfInterest, domainKey, departmentKey, chartDataCallback) {
-      var domain = this.results[domainKey];
-      if(!domain) {
-        var responseMethod = function(e) {
-          this.ajax.removeEventListener("response", responseMethod);
-          this.ajax.removeEventListener("error", responseMethod);
-          if(e.type === "error") {
-            chartDataCallback(null, true);
-          } else {
-            this.results[domainKey] = e.detail.response;
-            var chartData = this._buildChartData(valueOfInterest,
-              e.detail.response, departmentKey);
-            chartDataCallback(chartData, false);
-          }
-        }.bind(this);
-        this.ajax.addEventListener("response", responseMethod);
-        this.ajax.addEventListener("error", responseMethod);
-        this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
-        this.ajax.generateRequest()
-      } else {
-        var chartData = this._buildChartData(valueOfInterest,
-          this.results[domainKey], departmentKey);
-        chartDataCallback(chartData);
-      }
-    },
-
-    _buildChartData: function(valueOfInterest, domain, departmentKey) {
-      var department = this._getDepartment(domain, departmentKey);
-      var cols = this._buildChartCols(department, valueOfInterest);
-      var rows = null;
-      if(this.randomNumbers) {
-        rows = this._buildRandomRow(3, cols.length - 1, 0, 100);
-      } else {
-        rows = this._buildChartRows(department, valueOfInterest);
-      }
-      var chartData = {cols: cols, rows: rows};
-      return chartData;
-    },
-
-    _buildChartCols: function(department, valueOfInterest) {
-      var cols = [];
-      cols.push({label: "period", type: "string", id: "period", color: 'black'})
-      for(var i = 0; i < department.periodResults[0].columns.length; i++) {
-        cols.push({id: department.periodResults[0].columns[i].key,
-          label: department.periodResults[0].columns[i].caption,
-          type: "number",
-          color: this.colors[i]});
-      };
-      return cols;
-    },
-
-    _buildChartRows: function(department, valueOfInterest) {
-      var rows = [];
-      var i = 0;
-      department.periodResults.forEach(function(periodResult) {
-        var values = periodResult.rows.find(function(row) {
-          return row.key === valueOfInterest;
-        }).values;
-        var rowOfInterest = [i.toString()];
-        values.forEach(function(value) {
-          rowOfInterest.push(parseFloat(value));
-        });
-        rows.push(rowOfInterest);
-        i++;
-      })
-      return rows;
-    },
-
-    /**
-     * Callback for getting chart Data.
-     *
-     * @callback tableDataCallback
-     * @param {object} tableData - The result as table represntation.
-     * @param {Boolean} error - True if the server reponds with an error
-     */
-
-    /**
-     Get the Klima Results for vaadin-grid.
-     @param {string} valueOfInterest the name of the value.
-     @param {string} domainKey the name of the domain.
-     @param {string} departmentKey the name of the department.
-     @param {string} departmentKey the name of the department.
-     @param {Requester~requestCallback} tableDataCallback - The callback that handles the data.
-     @return A object with rows and cols for the vaadin-grid element.
-    */
-    getTableData: function(period, domainKey, departmentKey, tableDataCallback) {
-      var domain = this.results[domainKey];
-      if(!domain) {
-        this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
-        var responseMethod = function(e) {
-          this.ajax.removeEventListener("response", responseMethod);
-          this.ajax.removeEventListener("error", responseMethod);
-          if(e.type === "error") {
-            tableDataCallback(tableData, true);
-          } else {
-            this.results[domainKey] = e.detail.response;
-            var tableData = this._buildTableData(period,
-              e.detail.response, departmentKey);
-            tableDataCallback(tableData, false);
-          }
-        }.bind(this);
-        this.ajax.addEventListener("response", responseMethod);
-        this.ajax.addEventListener("error", responseMethod);
-        this.ajax.generateRequest();
-      } else {
-        var tableData = this._buildTableData(period,
-          this.results[domainKey], departmentKey);
-        tableDataCallback(tableData);
-      }
-    },
-
-    _buildTableData: function(period, domain, departmentKey) {
-      var department = this._getDepartment(domain, departmentKey);
-      var periodResult = department.periodResults[period];
-      var tableData = {};
-      tableData.items = this._buildTableItems(periodResult);
-      tableData.columns = this._buildTableColumns(periodResult);
-      tableData.header = this._buildHeader(periodResult);
-      return tableData
-    },
-
-    _getDepartment: function(domain, departmentKey) {
-      return domain.departmentResults.find(function(department) {
-        return department.key ===  departmentKey;
-      });
-    },
-
-    _buildTableItems: function(periodResult) {
-      var items = [];
-      periodResult.rows.forEach(function(entry) {
-        var preparedEntry = {description: entry.caption};
-        for(var i=0;i<entry.values.length;i++) {
-          preparedEntry[periodResult.columns[i].key] = entry.values[i]
-        }
-        items.push(preparedEntry);
-      });
-      return items;
-    },
-
-    _buildTableColumns: function(periodResult) {
-      var columns = [];
-      columns.push({name: "description"});
-      periodResult.columns.forEach(function(entry) {
-        var preparedEntry = {name: entry.key};
-        columns.push(preparedEntry);
-      });
-      return columns;
-    },
-
-    _buildHeader: function(periodResult) {
-      var header = [];
-      header.push("");
-      periodResult.columns.forEach(function(entry) {
-        header.push(entry.caption);
-      });
-      return header;
-    },
-
-    _getRandomResult: function(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    },
-
-    _buildRandomRow: function(numOfPeriods, numOfCols, min, max) {
-      var rows = [];
-      for(var i = 0; i < numOfPeriods; i++) {
-        var row = [i.toString()];
-        for(var j = 0; j < numOfCols; j++) {
-          row.push(this._getRandomResult(min, max));
-        }
-        rows.push(row);
-      }
-      return rows;
-    }
-  };
-
-  getResults = function() {
-    if(results == null) {
-      results = {
+    results: {
+      type: Object,
+      value: {
         allocationData: null,
         contributionMargin: null,
         fullCosts: null,
@@ -270,12 +24,245 @@ var KlimaResultsBehavior = (function () {
         personal: null,
         arrivalRates: null,
         qualities: null
-      };
-      return results;
-    }
-    return results;
-  }
+      }
+    },
 
-  return klimaResults;
-})();
+    /**
+     Ajax element for the requests. (shared by all elements)
+    */
+    ajax: {
+      type: Object,
+      value: function() {
+        var ajaxEle = document.getElementById("resultsAjax");
+        if(ajaxEle == null) {
+          ajaxEle = document.createElement('iron-ajax');
+          ajaxEle.setAttribute("id", "resultsAjax");
+          ajaxEle.setAttribute("handle-as", "json");
+          document.body.appendChild(ajaxEle);
+        }
+        return ajaxEle;
+      }
+    },
+
+    /**
+     Colors for the columns.
+    */
+    colors: {
+      type: Array,
+      value: ['#f44336','#2196f3', '#4caf50', '#ffeb3b', '#ff9800', '#00bcd4', '#9c27b0', '#cddc39', '#e91e63', '#009688']
+    },
+
+    /**
+     When true numbers a random. (Only for charts)
+    */
+    randomNumbers: {
+      type: Boolean,
+      value: false
+    }
+  },
+
+  /**
+   Clears the cache
+  */
+  clearCache: function() {
+    this.results.allocationData = null;
+    this.results.contributionMargin = null;
+    this.results.fullCosts = null;
+    this.results.periodResults = null;
+    this.results.personal = null;
+    this.results.arrivalRates = null;
+    this.results.qualities = null;
+  },
+
+  /**
+   * Callback for getting chart Data.
+   *
+   * @callback chartDataCallback
+   * @param {object} chartData - The result as chart represntation.
+   * @param {Boolean} error - True if the server reponds with an error
+   */
+
+  /**
+   Get the Klima Results for google-charts.
+   @param {string} valueOfInterest the name of the value.
+   @param {string} domainKey the name of the domain.
+   @param {string} departmentKey the name of the department.
+   @param {string} departmentKey the name of the department.
+   @param {Requester~requestCallback} chartDataCallback - The callback that handles the data.
+   @return A object with teh rows and cols for the google-chart element.
+  */
+  getChartData: function(valueOfInterest, domainKey, departmentKey, chartDataCallback) {
+    var domain = this.results[domainKey];
+    if(!domain) {
+      var responseMethod = function(e) {
+        this.ajax.removeEventListener("response", responseMethod);
+        this.ajax.removeEventListener("error", responseMethod);
+        if(e.type === "error") {
+          chartDataCallback(null, true);
+        } else {
+          this.set('results.' + domainKey, e.detail.response);
+          var chartData = this._buildChartData(valueOfInterest,
+            e.detail.response, departmentKey);
+          chartDataCallback(chartData, false);
+        }
+      }.bind(this);
+      this.ajax.addEventListener("response", responseMethod);
+      this.ajax.addEventListener("error", responseMethod);
+      this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
+      this.ajax.generateRequest()
+    } else {
+      var chartData = this._buildChartData(valueOfInterest,
+        this.results[domainKey], departmentKey);
+      chartDataCallback(chartData);
+    }
+  },
+
+  _buildChartData: function(valueOfInterest, domain, departmentKey) {
+    var department = this._getDepartment(domain, departmentKey);
+    var cols = this._buildChartCols(department, valueOfInterest);
+    var rows = null;
+    if(this.randomNumbers) {
+      rows = this._buildRandomRow(3, cols.length - 1, 0, 100);
+    } else {
+      rows = this._buildChartRows(department, valueOfInterest);
+    }
+    var chartData = {cols: cols, rows: rows};
+    return chartData;
+  },
+
+  _buildChartCols: function(department, valueOfInterest) {
+    var cols = [];
+    cols.push({label: "period", type: "string", id: "period", color: 'black'})
+    for(var i = 0; i < department.periodResults[0].columns.length; i++) {
+      cols.push({id: department.periodResults[0].columns[i].key,
+        label: department.periodResults[0].columns[i].caption,
+        type: "number",
+        color: this.colors[i]});
+    };
+    return cols;
+  },
+
+  _buildChartRows: function(department, valueOfInterest) {
+    var rows = [];
+    var i = 0;
+    department.periodResults.forEach(function(periodResult) {
+      var values = periodResult.rows.find(function(row) {
+        return row.key === valueOfInterest;
+      }).values;
+      var rowOfInterest = [i.toString()];
+      values.forEach(function(value) {
+        rowOfInterest.push(parseFloat(value));
+      });
+      rows.push(rowOfInterest);
+      i++;
+    })
+    return rows;
+  },
+
+  /**
+   * Callback for getting chart Data.
+   *
+   * @callback tableDataCallback
+   * @param {object} tableData - The result as table represntation.
+   * @param {Boolean} error - True if the server reponds with an error
+   */
+
+  /**
+   Get the Klima Results for vaadin-grid.
+   @param {string} valueOfInterest the name of the value.
+   @param {string} domainKey the name of the domain.
+   @param {string} departmentKey the name of the department.
+   @param {string} departmentKey the name of the department.
+   @param {Requester~requestCallback} tableDataCallback - The callback that handles the data.
+   @return A object with rows and cols for the vaadin-grid element.
+  */
+  getTableData: function(period, domainKey, departmentKey, tableDataCallback) {
+    var domain = this.results[domainKey];
+    if(!domain) {
+      this.ajax.setAttribute("url", "/json/" + domainKey + ".json");
+      var responseMethod = function(e) {
+        this.ajax.removeEventListener("response", responseMethod);
+        this.ajax.removeEventListener("error", responseMethod);
+        if(e.type === "error") {
+          tableDataCallback(tableData, true);
+        } else {
+          this.set('results.' + domainKey, e.detail.response);
+          var tableData = this._buildTableData(period,
+            e.detail.response, departmentKey);
+          tableDataCallback(tableData, false);
+        }
+      }.bind(this);
+      this.ajax.addEventListener("response", responseMethod);
+      this.ajax.addEventListener("error", responseMethod);
+      this.ajax.generateRequest();
+    } else {
+      var tableData = this._buildTableData(period,
+        this.results[domainKey], departmentKey);
+      tableDataCallback(tableData);
+    }
+  },
+
+  _buildTableData: function(period, domain, departmentKey) {
+    var department = this._getDepartment(domain, departmentKey);
+    var periodResult = department.periodResults[period];
+    var tableData = {};
+    tableData.items = this._buildTableItems(periodResult);
+    tableData.columns = this._buildTableColumns(periodResult);
+    tableData.header = this._buildHeader(periodResult);
+    return tableData
+  },
+
+  _getDepartment: function(domain, departmentKey) {
+    return domain.departmentResults.find(function(department) {
+      return department.key ===  departmentKey;
+    });
+  },
+
+  _buildTableItems: function(periodResult) {
+    var items = [];
+    periodResult.rows.forEach(function(entry) {
+      var preparedEntry = {description: entry.caption};
+      for(var i=0;i<entry.values.length;i++) {
+        preparedEntry[periodResult.columns[i].key] = entry.values[i]
+      }
+      items.push(preparedEntry);
+    });
+    return items;
+  },
+
+  _buildTableColumns: function(periodResult) {
+    var columns = [];
+    columns.push({name: "description"});
+    periodResult.columns.forEach(function(entry) {
+      var preparedEntry = {name: entry.key};
+      columns.push(preparedEntry);
+    });
+    return columns;
+  },
+
+  _buildHeader: function(periodResult) {
+    var header = [];
+    header.push("");
+    periodResult.columns.forEach(function(entry) {
+      header.push(entry.caption);
+    });
+    return header;
+  },
+
+  _getRandomResult: function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+
+  _buildRandomRow: function(numOfPeriods, numOfCols, min, max) {
+    var rows = [];
+    for(var i = 0; i < numOfPeriods; i++) {
+      var row = [i.toString()];
+      for(var j = 0; j < numOfCols; j++) {
+        row.push(this._getRandomResult(min, max));
+      }
+      rows.push(row);
+    }
+    return rows;
+  },
+}
 </script>

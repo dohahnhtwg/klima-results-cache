@@ -14,7 +14,7 @@
   Polymer({
     is: 'test-element',
     behaviors: [
-      KlimaResultsBehavior
+      klima.KlimaResultsBehavior
     ],
     getpff: function() {
       this.getChartData("hospital.results.acceptedPatients", "allocationData", "internalMedicine", function(chartData) {
