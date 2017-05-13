@@ -107,7 +107,7 @@ var KlimaResultsBehavior = (function () {
       } else {
         var chartData = this._buildChartData(valueOfInterest,
           this.results[domainKey], departmentKey);
-        callback(chartData);
+        chartDataCallback(chartData);
       }
     },
 
@@ -192,7 +192,7 @@ var KlimaResultsBehavior = (function () {
       } else {
         var tableData = this._buildTableData(period,
           this.results[domainKey], departmentKey);
-        callback(tableData);
+        tableDataCallback(tableData);
       }
     },
 
