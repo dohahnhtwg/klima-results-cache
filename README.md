@@ -1,6 +1,10 @@
 # \<klima-results-cache\>
 
-Gives an element access to Klima results
+Gives an element access to Klima results. Just add the klima.KlimaResultsBehavior
+to the list of behaviors of the the elment which should access the results. There
+are currently two methods to access the results. The getTableData method converts the
+results in a format for the vaadin-grid element. While the getChartData method
+converts the results in a format for the google-chart element.
 
 ## Install the Polymer-CLI
 
